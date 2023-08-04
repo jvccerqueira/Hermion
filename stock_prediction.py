@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 
 from sklearn.preprocessing import MinMaxScaler
 
@@ -15,10 +12,6 @@ import yfinance as yf
 
 # For time stamps
 from datetime import datetime, timedelta
-
-# Set chart style
-sns.set_style('whitegrid')
-plt.style.use("fivethirtyeight")
 
 
 def stock_prediction(stock_ticker, start_date, date_range):
