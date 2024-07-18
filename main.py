@@ -13,7 +13,7 @@ TODAY = date.today().strftime("%Y-%m-%d")
 st.title("Analise de Ações")
 
 # Selecting all available Tickers
-selected_stock = st.sidebar.text_input("Select DataSet for Analysis", 'VALE3')
+selected_stock = st.sidebar.text_input("Select Stock for Analysis - Try write the Yahoo Finance Ticker", 'VALE3')
 
 # Dados Ibovespa
 ibov_info = yf.download('^BVSP', start=START_DATE, end=TODAY)
@@ -66,7 +66,7 @@ with st.container():
     col1.write(f'Crescimento da Receita Tri: {round(acao.info["revenueGrowth"] * 100, 2)}%')
 
 # Descrição Ações
-st.dataframe(acao_historica.describe()[['Open', 'Close', 'High', 'Low', 'Volume', 'Dividends']])
+# st.dataframe(acao_historica.describe()[['Close', 'Volume', 'Dividends']])
 
 
 # Plotagem
@@ -97,8 +97,8 @@ error, train_data, pred_data = stock_prediction(selected_stock, START_DATE, 7)
 def plot_pred_data():
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=pred_data.index, y=pred_data.Close, name="Fechamento Real"))
-    fig.add_trace(go.Scatter(x=pred_data.index, y=pred_data.Predictions, name="Fechamento Previsto"))
     fig.add_trace(go.Scatter(x=train_data.index, y=train_data.Close, name="Fechamento Histórico"))
+    fig.add_trace(go.Scatter(x=pred_data.index, y=pred_data.Predictions, name="Fechamento Previsto"))
     fig.layout.update(title_text='Fechamento Histórico + Previsão',
                       xaxis_rangeslider_visible=True)
     fig.update_xaxes(
@@ -116,4 +116,4 @@ def plot_pred_data():
 
 
 plot_pred_data()
-st.write(f'Erro Calculado: {error}')
+st.write(f'Erro Calculado: {round(error, 2)}')
