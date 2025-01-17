@@ -1,3 +1,4 @@
+# %%
 import streamlit as st
 from datetime import date
 import yfinance as yf
@@ -5,7 +6,7 @@ import pandas as pd
 from stock_prediction import stock_prediction
 from plotly import graph_objs as go
 
-# Filtering Stock Data by Date
+#%% Filtering Stock Data by Date
 START_DATE = "2015-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
@@ -13,7 +14,7 @@ TODAY = date.today().strftime("%Y-%m-%d")
 st.title("Analise de Ações")
 
 # Selecting all available Tickers
-selected_stock = st.sidebar.text_input("Select Stock for Analysis - Try write the Yahoo Finance Ticker", 'VALE3')
+selected_stock = st.sidebar.text_input("Select Stock for Analysis - Try write the Yahoo Finance Ticker", 'VALE3.SA')
 
 # Dados Ibovespa
 ibov_info = yf.download('^BVSP', start=START_DATE, end=TODAY)
@@ -117,3 +118,11 @@ def plot_pred_data():
 
 plot_pred_data()
 st.write(f'Erro Calculado: {round(error, 2)}')
+# %%
+print(acao_historica.head())
+#%%
+print(acao_historica.columns)
+# %%
+print(acao_historica.empty)
+
+# %%

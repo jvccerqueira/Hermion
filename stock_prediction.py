@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import Dense, LSTM
 
-# For reading stock data from yahoo
+# For reading stock data from yahoopip 
 import yfinance as yf
 
 # For time stamps
