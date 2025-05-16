@@ -18,6 +18,7 @@ selected_stock = st.sidebar.text_input("Select Stock for Analysis - Try write th
 
 # Dados Ibovespa
 ibov_info = yf.download('^BVSP', start=START_DATE, end=TODAY)
+ibov_info = ibov_info.xs('^BVSP', level='Ticker', axis=1)
 ibov_info['Retorno'] = ibov_info.Close / ibov_info.Close.iloc[0]
 
 # Dados Ação Escolhida
@@ -48,19 +49,19 @@ with st.container():
 
     # Company Results
     # Preço Atual
-    col1.write(f"Preço Atual: R$ {acao.info['currentPrice']}")
+    col1.write(f"Preço Atual: R${round(acao.info['currentPrice'], 2)}")
     # Dividend Yield
     col1.write(f"Dividend Yield: {round(acao.info['dividendYield'] * 100, 2)}%")
     # P/L
-    col1.write(f'Indice P/L: {acao.info["trailingPE"]}')
+    col1.write(f'Indice P/L: {round(acao.info["trailingPE"],2)}')
     # ROE
     col1.write(f'ROE: {round(acao.info["returnOnEquity"] * 100, 2)}%')
     # Resultados 52 Sem
-    col2.write(f'Maxima 52 Sem: {acao.info["fiftyTwoWeekHigh"]}')
-    col2.write(f'Mínima 52 Sem: {acao.info["fiftyTwoWeekLow"]}')
-    col2.write(f'Média 52 Sem: {acao.info["fiftyDayAverage"]}')
+    col2.write(f'Maxima 52 Sem: R${round(acao.info["fiftyTwoWeekHigh"], 2)}')
+    col2.write(f'Mínima 52 Sem: R${round(acao.info["fiftyTwoWeekLow"], 2)}')
+    col2.write(f'Média 52 Sem: R${round(acao.info["fiftyDayAverage"], 2)}')
     # P/VP
-    col2.write(f'P/VP: {acao.info["priceToBook"]}')
+    col2.write(f'P/VP: {round(acao.info["priceToBook"],2)}')
     # Valor Patrimonial
     col2.write(f'Valor Patrimonial: R${acao.info["enterpriseValue"]}')
     # Crescimento de Receita
@@ -118,11 +119,3 @@ def plot_pred_data():
 
 plot_pred_data()
 st.write(f'Erro Calculado: {round(error, 2)}')
-# %%
-print(acao_historica.head())
-#%%
-print(acao_historica.columns)
-# %%
-print(acao_historica.empty)
-
-# %%

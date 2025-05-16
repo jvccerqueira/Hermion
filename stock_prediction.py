@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 
 def stock_prediction(stock_ticker, start_date, date_range):
     stock_prices = yf.download(stock_ticker, start=start_date, end=datetime.now())
-    # Create a new dataframe with only the 'Close column
+    stock_prices = stock_prices.xs(stock_ticker, level='Ticker', axis=1)
     data = stock_prices.filter(['Close'])
     # Convert the dataframe to a numpy array
     dataset = data.values
