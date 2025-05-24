@@ -37,9 +37,9 @@ cd PD
 
 Make sure you have Python 3.7+ installed.
 >[!TIP]
-> It is a good practice to create a Virtual Environment to run python projects, you can do this by
->```python -m venv .venv```
->```source .venv/Scripts/activate``` To activate the virtual environment on Windows
+> It is a good practice to create a Virtual Environment to run python projects, you can do this by  
+>```python -m venv .venv```  
+>```source .venv/Scripts/activate``` To activate the virtual environment on Windows  
 >```source .venv/bin/activate``` To activate the virtual environment on MacOS and Linux
 
 Install the project dependencies
