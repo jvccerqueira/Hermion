@@ -29,7 +29,7 @@ README.md                     # Project documentation
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/jvccerqueira/PD.git
+git clone https://github.com/jvccerqueira/Hermion.git
 cd PD
 ```
 
